@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// 📡 Configurar cliente base
+// 📡 Configurar cliente base para apuntar al backend en Vercel
 const client = axios.create({
-  baseURL: 'http://localhost:4000/api', // cambia si tu backend está en otra URL
+  baseURL: 'https://rn2.vercel.app/api',
 });
 
 export default client;

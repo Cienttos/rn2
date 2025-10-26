@@ -7,8 +7,19 @@ import uploadRoutes from './routes/upload.js';
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:8081',
+  // Agrega aquí la URL de tu frontend en producción
+];
+
 app.use(cors({
-  origin: '*', // En producción, cámbialo a tu dominio de frontend
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());
