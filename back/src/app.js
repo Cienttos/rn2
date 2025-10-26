@@ -7,21 +7,7 @@ import uploadRoutes from './routes/upload.js';
 
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:8081',
-  // Agrega aquí la URL de tu frontend en producción
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
+app.use(cors({ origin: ["http://localhost:8081", "https://rn2.vercel.app"], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
